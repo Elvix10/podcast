@@ -22,7 +22,7 @@ export  function Player(){
                 <div className={styles.emptySlider}/>
                 </div>
                 
-                <span>00:00</span>
+                <span>00:00</span> 
             </div>
             <div className={styles.buttons}>
                 <button type="button">
