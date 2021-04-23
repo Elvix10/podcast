@@ -5,6 +5,7 @@ import { ptBR } from 'date-fns/locale'
 import { convertDuration } from '../utils/convertDuration'
 import styles from './home.module.scss'
 import Image from 'next/image'
+import Link from 'next/link'
 
 type Episode={
   id:string,
@@ -43,8 +44,10 @@ export default function Home({latestEpisodes, allEpisodes}:HomeProps) {
                     />
 
                    <div className={styles.episodesDetails}>
-
-                     <a href=''>{episode.title}</a>
+                      <Link href={`/episodes/${episode.id}`}>
+                        <a >{episode.title}</a>
+                      </Link>
+                     
                      <p>{episode.members}</p>
                      <span>{episode.publishedAt}</span>
                      <span>{episode.durationAsString}</span>
@@ -73,24 +76,27 @@ export default function Home({latestEpisodes, allEpisodes}:HomeProps) {
             <th></th>
           </thead>
           <tbody>
-            {allEpisodes.map(episisode=>{
+            {allEpisodes.map(episode=>{
               return(
-              <tr key={episisode.id}>
+              <tr key={episode.id}>
                 <td style={{width:72}}>
-                  <Image
+                  <Image 
                     width={120}
                     height={120}
-                    src={episisode.thumbnail}
-                    alt={episisode.title}
+                    src={episode.thumbnail}
+                    alt={episode.title}
                     objectFit='cover'
                   />
                 </td>
                 <td>
-                  <a href=''>{episisode.title}</a>
+                  <Link href={`/episodes/${episode.id}`}>
+                      <a >{episode.title}</a>
+                  </Link>
+                  
                 </td>
-                <td>{episisode.members}</td>
-                <td style={{width:100}}>{episisode.publishedAt}</td>
-                <td>{episisode.durationAsString}</td>
+                <td>{episode.members}</td>
+                <td style={{width:100}}>{episode.publishedAt}</td>
+                <td>{episode.durationAsString}</td>
 
                 <td>
                   <button type="button">
